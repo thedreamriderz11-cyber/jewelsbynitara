@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Jewels by Nitara — handcrafted gold jewelry. Follow us on Instagram @jewelsbynitara." />
+  <title>Jewels by Nitara</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --gold: #C9A84C;
+      --gold-light: #e8c96a;
+      --cream: #FAF6F0;
+      --charcoal: #2C2C2C;
+      --white: #FFFFFF;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Lato', system-ui, sans-serif;
+      background: var(--cream);
+      color: var(--charcoal);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+      background: rgba(250,246,240,0.95);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: box-shadow 0.3s;
+    }
+    .nav.scrolled { box-shadow: 0 2px 20px rgba(44,44,44,0.1); }
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.2rem; font-weight: 600;
+      color: var(--gold); text-decoration: none; letter-spacing: 0.02em;
+    }
+    .nav-link {
+      font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--charcoal);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-link:hover { color: var(--gold); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 100px 1.5rem 4rem;
+      background:
+        radial-gradient(ellipse at 65% 35%, rgba(201,168,76,0.15) 0%, transparent 55%),
+        radial-gradient(ellipse at 25% 75%, rgba(201,168,76,0.1) 0%, transparent 50%),
+        var(--cream);
+    }
+    .hero-eyebrow {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 700; line-height: 1.1;
+      color: var(--charcoal); margin-bottom: 1.25rem;
+    }
+    .hero h1 em { font-style: italic; color: var(--gold); }
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      font-weight: 300; color: #777;
+      letter-spacing: 0.04em; margin-bottom: 2.5rem;
+      max-width: 420px;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.85rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--white); background: var(--gold);
+      padding: 0.9rem 2.5rem; min-height: 48px;
+      border-radius: 4px; text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn:hover { background: #b08d3a; transform: translateY(-2px); }
+    .btn svg { width: 18px; height: 18px; fill: currentColor; flex-shrink: 0; }
+
+    /* ── DIVIDER ── */
+    .divider {
+      display: flex; align-items: center; gap: 1rem;
+      max-width: 180px; margin: 3rem auto;
+    }
+    .divider::before, .divider::after {
+      content: ''; flex: 1; height: 1px;
+      background: var(--gold); opacity: 0.45;
+    }
+    .divider span { color: var(--gold); font-size: 0.45rem; }
+
+    /* ── FEATURE SPLIT ── */
+    .feature-split {
+      max-width: 1100px; margin: 0 auto;
+      padding: 2rem 1.5rem 5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .feature-split.reverse { direction: rtl; }
+    .feature-split.reverse > * { direction: ltr; }
+
+    .feature-img-wrap {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      aspect-ratio: 4/5;
+    }
+    .feature-img-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+    .feature-img-wrap:hover img { transform: scale(1.04); }
+    .feature-img-wrap::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg, transparent 55%, rgba(201,168,76,0.18) 100%);
+      pointer-events: none;
+    }
+
+    .feature-text { padding: 1rem 0; }
+    .feature-text .eyebrow {
+      font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.25rem;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .feature-text .eyebrow::before {
+      content: ''; display: inline-block;
+      width: 28px; height: 1px; background: var(--gold);
+    }
+    .feature-text blockquote {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.6rem, 3.2vw, 2.4rem);
+      font-style: italic; line-height: 1.3;
+      color: var(--charcoal);
+      margin-bottom: 1.5rem;
+      border: none; padding: 0;
+    }
+    .feature-text blockquote em { color: var(--gold); font-style: normal; }
+    .feature-text p {
+      font-size: 0.95rem; color: #888;
+      line-height: 1.8; letter-spacing: 0.03em;
+      max-width: 380px; margin-bottom: 2rem;
+    }
+    .feature-text .signature {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1rem; font-style: italic;
+      color: var(--gold); opacity: 0.8;
+    }
+
+    @media (max-width: 700px) {
+      .feature-split {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .feature-split.reverse { direction: ltr; }
+      .feature-img-wrap { aspect-ratio: 3/2; }
+    }
+
+    /* ── GALLERY SECTION ── */
+    .gallery-section {
+      padding: 0 1.5rem 5rem;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .section-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+      text-align: center; color: var(--charcoal);
+      margin-bottom: 0.5rem;
+    }
+    .section-sub {
+      text-align: center; color: #888;
+      font-size: 0.95rem; letter-spacing: 0.05em;
+      margin-bottom: 3rem;
+    }
+
+    /* Masonry-style gallery using CSS columns */
+    .gallery {
+      columns: 3 280px;
+      column-gap: 1rem;
+    }
+    .gallery-item {
+      break-inside: avoid;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+    .gallery-item img {
+      width: 100%; display: block;
+      transition: transform 0.4s ease;
+    }
+    .gallery-item:hover img { transform: scale(1.03); }
+
+    @media (max-width: 600px) {
+      .gallery { columns: 2 140px; column-gap: 0.6rem; }
+      .gallery-item { margin-bottom: 0.6rem; }
+    }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      display: none; position: fixed; inset: 0; z-index: 200;
+      background: rgba(20,15,10,0.92);
+      align-items: center; justify-content: center;
+      padding: 1rem;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 90vw; max-height: 90vh;
+      border-radius: 6px; object-fit: contain;
+    }
+    .lightbox-close {
+      position: absolute; top: 1.25rem; right: 1.5rem;
+      font-size: 2rem; color: rgba(255,255,255,0.7);
+      cursor: pointer; line-height: 1; background: none;
+      border: none; transition: color 0.2s;
+    }
+    .lightbox-close:hover { color: var(--white); }
+
+    /* ── CTA BAND ── */
+    .cta-band {
+      background: linear-gradient(135deg, #C9A84C 0%, #e8c96a 50%, #C9A84C 100%);
+      padding: 5rem 1.5rem;
+      text-align: center;
+    }
+    .cta-band h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      color: var(--white); margin-bottom: 0.75rem;
+    }
+    .cta-band p {
+      color: rgba(255,255,255,0.85);
+      font-size: 1rem; letter-spacing: 0.06em;
+      margin-bottom: 2.5rem;
+    }
+    .btn-light {
+      background: var(--white); color: var(--gold);
+    }
+    .btn-light:hover { background: rgba(255,255,255,0.88); }
+
+    /* ── SCROLL ANIMATIONS ── */
+    [data-reveal] {
+      opacity: 0;
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    [data-reveal="fade-up"]    { transform: translateY(48px); }
+    [data-reveal="fade-left"]  { transform: translateX(-56px); }
+    [data-reveal="fade-right"] { transform: translateX(56px); }
+    [data-reveal="zoom"]       { transform: scale(0.92); }
+
+    [data-reveal].revealed {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* stagger children inside a group */
+    [data-reveal-group] > * {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    [data-reveal-group].revealed > * { opacity: 1; transform: none; }
+    [data-reveal-group].revealed > *:nth-child(1) { transition-delay: 0s; }
+    [data-reveal-group].revealed > *:nth-child(2) { transition-delay: 0.1s; }
+    [data-reveal-group].revealed > *:nth-child(3) { transition-delay: 0.2s; }
+    [data-reveal-group].revealed > *:nth-child(4) { transition-delay: 0.3s; }
+    [data-reveal-group].revealed > *:nth-child(5) { transition-delay: 0.4s; }
+    [data-reveal-group].revealed > *:nth-child(6) { transition-delay: 0.5s; }
+    [data-reveal-group].revealed > *:nth-child(7) { transition-delay: 0.6s; }
+    [data-reveal-group].revealed > *:nth-child(8) { transition-delay: 0.7s; }
+    [data-reveal-group].revealed > *:nth-child(9) { transition-delay: 0.8s; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--charcoal);
+      color: rgba(250,246,240,0.55);
+      text-align: center; padding: 2rem 1.5rem;
+      font-size: 0.82rem; letter-spacing: 0.04em;
+    }
+    footer strong { color: var(--cream); }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-brand">Jewels by Nitara</a>
+      <a href="#gallery" class="nav-link">Gallery</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <p class="hero-eyebrow">@jewelsbynitara</p>
+    <h1>Crafted to<br><em>Shine</em></h1>
+    <p class="hero-sub">Delicate jewelry for every moment that matters.</p>
+    <a class="btn" href="https://www.instagram.com/jewelsbynitara?igsh=a2hkamVwYXQ3YTU1" target="_blank" rel="noopener noreferrer">
+      <!-- Instagram icon -->
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      Follow on Instagram
+    </a>
+  </section>
+
+  <!-- FEATURE SPLIT 1 — photo left, quote right -->
+  <div class="feature-split">
+    <div class="feature-img-wrap" data-reveal="fade-left">
+      <img src="images/photo2.png" alt="Jewels by Nitara — featured piece" />
+    </div>
+    <div class="feature-text" data-reveal="fade-right">
+      <p class="eyebrow">The Craft</p>
+      <blockquote>
+        "Jewelry is the most <em>transformative</em> thing you can wear."
+      </blockquote>
+      <p>Every piece from Jewels by Nitara is handcrafted with intention — delicate gold forms that move with you and catch the light in all the right ways.</p>
+      <span class="signature">— Nitara</span>
+    </div>
+  </div>
+
+  <!-- FEATURE SPLIT 2 — quote left, photo right -->
+  <div class="feature-split reverse">
+    <div class="feature-img-wrap" data-reveal="fade-right">
+      <img src="images/photo5.png" alt="Jewels by Nitara — featured piece" />
+    </div>
+    <div class="feature-text" data-reveal="fade-left">
+      <p class="eyebrow">The Story</p>
+      <blockquote>
+        "Gold doesn't just <em>shine</em> — it remembers."
+      </blockquote>
+      <p>Each design carries a story. From the first sketch to the final polish, our jewelry is made to be worn, loved, and passed on.</p>
+      <span class="signature">— Jewels by Nitara</span>
+    </div>
+  </div>
+
+  <!-- GALLERY -->
+  <div class="divider" data-reveal="fade-up"><span>◆</span></div>
+  <section class="gallery-section" id="gallery">
+    <h2 class="section-title" data-reveal="fade-up">Our Collection</h2>
+    <p class="section-sub" data-reveal="fade-up">A glimpse of what awaits you on Instagram</p>
+
+    <div class="gallery" id="photo-gallery" data-reveal-group>
+      <!--
+        HOW TO ADD YOUR PHOTOS:
+        Replace each src="images/photo1.jpg" with your actual image filename.
+        Name your files: photo1.jpg, photo2.jpg ... photo9.jpg
+        and place them in the images/ folder next to this file.
+      -->
+      <div class="gallery-item"><img src="images/photo1.png" alt="Jewels by Nitara — piece 1" /></div>
+      <div class="gallery-item"><img src="images/photo2.png" alt="Jewels by Nitara — piece 2" /></div>
+      <div class="gallery-item"><img src="images/photo3.png" alt="Jewels by Nitara — piece 3" /></div>
+      <div class="gallery-item"><img src="images/photo4.png" alt="Jewels by Nitara — piece 4" /></div>
+      <div class="gallery-item"><img src="images/photo5.png" alt="Jewels by Nitara — piece 5" /></div>
+      <div class="gallery-item"><img src="images/photo6.png" alt="Jewels by Nitara — piece 6" /></div>
+      <div class="gallery-item"><img src="images/photo7.png" alt="Jewels by Nitara — piece 7" /></div>
+      <div class="gallery-item"><img src="images/photo8.png" alt="Jewels by Nitara — piece 8" /></div>
+      <div class="gallery-item"><img src="images/photo9.png" alt="Jewels by Nitara — piece 9" /></div>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close">&times;</button>
+    <img id="lightbox-img" src="" alt="" />
+  </div>
+
+  <!-- CTA BAND -->
+  <section class="cta-band">
+    <h2 data-reveal="fade-up">See the Full Collection</h2>
+    <p data-reveal="fade-up">Follow @jewelsbynitara on Instagram for new arrivals</p>
+    <a class="btn btn-light" data-reveal="zoom" href="https://www.instagram.com/jewelsbynitara?igsh=a2hkamVwYXQ3YTU1" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:18px;height:18px;fill:currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      Shop on Instagram
+    </a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <strong>Jewels by Nitara</strong> &nbsp;·&nbsp; © 2025 All rights reserved &nbsp;·&nbsp;
+    <a href="https://www.instagram.com/jewelsbynitara?igsh=a2hkamVwYXQ3YTU1" target="_blank" rel="noopener noreferrer" style="color:var(--gold);text-decoration:none;">@jewelsbynitara</a>
+  </footer>
+
+  <script>
+    // ── SCROLL REVEAL ──
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('[data-reveal], [data-reveal-group]').forEach(el => {
+      revealObserver.observe(el);
+    });
+
+    // Sticky nav shadow
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    // Lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+
+    document.querySelectorAll('.gallery-item img').forEach(img => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightbox.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  </script>
+</body>
+</html>

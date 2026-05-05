@@ -262,7 +262,153 @@
     }
     .btn-light:hover { background: rgba(255,255,255,0.88); }
 
-    /* ── SCROLL ANIMATIONS ── */
+    /* ── TAGLINE BANNER ── */
+    .tagline-banner {
+      background: var(--charcoal);
+      padding: 3.5rem 1.5rem;
+      text-align: center;
+    }
+    .tagline-banner p {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+      font-style: italic;
+      color: var(--cream);
+      letter-spacing: 0.03em;
+      line-height: 1.4;
+    }
+    .tagline-banner p span { color: var(--gold); }
+
+    /* ── REVIEWS ── */
+    .reviews-section {
+      max-width: 1100px; margin: 0 auto;
+      padding: 5rem 1.5rem;
+      text-align: center;
+    }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .review-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 2rem 1.75rem;
+      text-align: left;
+      box-shadow: 0 4px 24px rgba(44,44,44,0.06);
+      border: 1px solid rgba(201,168,76,0.12);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .review-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(44,44,44,0.1);
+    }
+    .review-stars {
+      color: var(--gold);
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+    .review-text {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--charcoal);
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+    }
+    .review-author {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ── TRUST BAR ── */
+    .trust-bar {
+      background: linear-gradient(135deg, #fdf8f0 0%, #faf3e8 100%);
+      border-top: 1px solid rgba(201,168,76,0.2);
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+      padding: 3.5rem 1.5rem;
+    }
+    .trust-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 2rem;
+      text-align: center;
+    }
+    .trust-item { display: flex; flex-direction: column; align-items: center; gap: 0.75rem; }
+    .trust-icon {
+      width: 52px; height: 52px;
+      background: var(--white);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 2px 12px rgba(201,168,76,0.2);
+      font-size: 1.4rem;
+    }
+    .trust-label {
+      font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--charcoal);
+    }
+    .trust-desc {
+      font-size: 0.82rem; color: #999;
+      letter-spacing: 0.03em;
+    }
+
+    /* ── EMOTIONAL SECTION ── */
+    .emotional-section {
+      background: var(--charcoal);
+      padding: 6rem 1.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .emotional-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(201,168,76,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 50%, rgba(201,168,76,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .emotional-inner {
+      max-width: 720px; margin: 0 auto;
+      position: relative; z-index: 1;
+    }
+    .emotional-eyebrow {
+      font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 2rem;
+      display: flex; align-items: center; justify-content: center; gap: 1rem;
+    }
+    .emotional-eyebrow::before, .emotional-eyebrow::after {
+      content: ''; width: 40px; height: 1px;
+      background: var(--gold); opacity: 0.5;
+    }
+    .emotional-section h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-style: italic; line-height: 1.3;
+      color: var(--cream); margin-bottom: 1.75rem;
+    }
+    .emotional-section h2 em {
+      font-style: normal; color: var(--gold);
+    }
+    .emotional-body {
+      font-size: 1rem; color: rgba(250,246,240,0.65);
+      line-height: 1.9; letter-spacing: 0.03em;
+      margin-bottom: 1.5rem; max-width: 560px; margin-left: auto; margin-right: auto;
+    }
+    .emotional-body + .emotional-body { margin-top: -0.5rem; }
+    .emotional-sig {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.1rem; font-style: italic;
+      color: var(--gold); opacity: 0.85;
+      margin-top: 2.5rem; display: block;
+    }
     [data-reveal] {
       opacity: 0;
       transition: opacity 0.8s ease, transform 0.8s ease;
@@ -294,6 +440,29 @@
     [data-reveal-group].revealed > *:nth-child(8) { transition-delay: 0.7s; }
     [data-reveal-group].revealed > *:nth-child(9) { transition-delay: 0.8s; }
 
+    /* ── WHATSAPP FLOAT ── */
+    .wa-float {
+      position: fixed; bottom: 1.75rem; right: 1.75rem;
+      z-index: 300;
+      display: flex; align-items: center; gap: 0.6rem;
+      background: var(--gold);
+      color: var(--white);
+      font-family: 'Lato', sans-serif;
+      font-size: 0.82rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.75rem 1.25rem 0.75rem 0.9rem;
+      border-radius: 50px;
+      box-shadow: 0 4px 20px rgba(201,168,76,0.45);
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    }
+    .wa-float:hover {
+      background: #b08d3a;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 28px rgba(201,168,76,0.55);
+    }
+    .wa-float svg { flex-shrink: 0; }
+
     /* ── FOOTER ── */
     footer {
       background: var(--charcoal);
@@ -320,9 +489,7 @@
     <h1>Crafted to<br><em>Shine</em></h1>
     <p class="hero-sub">Delicate jewelry for every moment that matters.</p>
     <a class="btn" href="https://www.instagram.com/jewelsbynitara?igsh=a2hkamVwYXQ3YTU1" target="_blank" rel="noopener noreferrer">
-      <!-- Instagram icon -->
-      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-      Follow on Instagram
+      Shop Now
     </a>
   </section>
 
@@ -356,6 +523,29 @@
     </div>
   </div>
 
+  <!-- EMOTIONAL SECTION -->
+  <section class="emotional-section">
+    <div class="emotional-inner">
+      <p class="emotional-eyebrow" data-reveal="fade-up">Made with Love</p>
+      <h2 data-reveal="fade-up">
+        Some pieces are bought.<br>
+        Others are <em>felt</em>.
+      </h2>
+      <p class="emotional-body" data-reveal="fade-up">
+        There's a moment when you put on a piece of jewelry and something shifts. You stand a little taller. You feel a little more like yourself. That's what we make at Jewels by Nitara — not just ornaments, but feelings you can wear.
+      </p>
+      <p class="emotional-body" data-reveal="fade-up">
+        Every ring, every chain, every earring is crafted to carry meaning. Whether it's a gift to someone you love, or a quiet promise to yourself — we believe jewelry should always tell a story worth remembering.
+      </p>
+      <span class="emotional-sig" data-reveal="fade-up">— With love, Nitara</span>
+    </div>
+  </section>
+
+  <!-- TAGLINE BANNER -->
+  <div class="tagline-banner">
+    <p data-reveal="fade-up">"Jewelry is not just an accessory,<br><span>it's a statement."</span></p>
+  </div>
+
   <!-- GALLERY -->
   <div class="divider" data-reveal="fade-up"><span>◆</span></div>
   <section class="gallery-section" id="gallery">
@@ -387,6 +577,67 @@
     <img id="lightbox-img" src="" alt="" />
   </div>
 
+  <!-- REVIEWS -->
+  <section class="reviews-section">
+    <h2 class="section-title" data-reveal="fade-up">What Our Customers Say</h2>
+    <p class="section-sub" data-reveal="fade-up">Real love from real people</p>
+    <div class="reviews-grid" data-reveal-group>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Amazing quality! The piece looks even better in person. I get compliments every time I wear it."</p>
+        <span class="review-author">— Priya S.</span>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Looks premium and elegant! Exactly what I was looking for. Will definitely order again."</p>
+        <span class="review-author">— Meera R.</span>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Beautifully crafted and packaged. Feels like a luxury gift. Highly recommend Jewels by Nitara!"</p>
+        <span class="review-author">— Ananya K.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="trust-inner" data-reveal-group>
+      <div class="trust-item">
+        <div class="trust-icon">
+          <!-- Delivery truck -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="26" height="26"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v4h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        </div>
+        <span class="trust-label">Cash on Delivery</span>
+        <span class="trust-desc">Pay when it arrives</span>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">
+          <!-- Return arrow -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="26" height="26"><path d="M3 10h13a5 5 0 0 1 0 10H8"/><polyline points="3 10 7 6 3 2 3 10"/></svg>
+        </div>
+        <span class="trust-label">Easy Returns</span>
+        <span class="trust-desc">Hassle-free process</span>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">
+          <!-- Shield check -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="26" height="26"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+        </div>
+        <span class="trust-label">Secure Payments</span>
+        <span class="trust-desc">100% safe checkout</span>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">
+          <!-- Users / people -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="26" height="26"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <span class="trust-label">100+ Happy Customers</span>
+        <span class="trust-desc">And growing every day</span>
+      </div>
+    </div>
+  </div>
+
   <!-- CTA BAND -->
   <section class="cta-band">
     <h2 data-reveal="fade-up">See the Full Collection</h2>
@@ -396,6 +647,16 @@
       Shop on Instagram
     </a>
   </section>
+
+  <!-- WHATSAPP FLOAT BUTTON -->
+  <a class="wa-float"
+     href="https://wa.me/919074344168?text=Hi%21%20I%27m%20interested%20in%20ordering%20from%20Jewels%20by%20Nitara%20%F0%9F%92%9B"
+     target="_blank" rel="noopener noreferrer" aria-label="Order on WhatsApp">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+    </svg>
+    Order on WhatsApp
+  </a>
 
   <!-- FOOTER -->
   <footer>
